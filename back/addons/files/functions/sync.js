@@ -21,6 +21,7 @@ codebase.files.Fn('sync', async function(source)
 		.many();
 
 	const known = new Map(rows.map((row) => [row.Get('path'), row]));
+	const pending = [];
 
 	for(const file of walked)
 	{
@@ -38,6 +39,23 @@ codebase.files.Fn('sync', async function(source)
 			}
 
 			continue;
+		}
+
+		pending.push({ file, row });
+	}
+
+	if(pending.length)
+	{
+		console.log('Codebase ' + source + ': ' + pending.length + ' files to embed');
+	}
+
+	for(let progress = 0; progress < pending.length; progress++)
+	{
+		const { file, row } = pending[progress];
+
+		if(progress && progress % 25 === 0)
+		{
+			console.log('Codebase ' + source + ': ' + progress + ' of ' + pending.length + ' files embedded');
 		}
 
 		const content = readFileSync(join(root, file.path), 'utf8');
@@ -103,6 +121,11 @@ codebase.files.Fn('sync', async function(source)
 		await row.Delete();
 
 		stats.removed++;
+	}
+
+	if(pending.length || stats.removed)
+	{
+		console.log('Codebase ' + source + ': done, ' + stats.added + ' added, ' + stats.changed + ' changed, ' + stats.removed + ' removed, ' + stats.chunks + ' chunks');
 	}
 
 	return stats;

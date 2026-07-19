@@ -22,15 +22,16 @@ codebase.Fn('embed', async function(texts)
 
 	for(let offset = 0; offset < texts.length; offset += BATCH)
 	{
-		const response = await fetch(endpoint + '/v1/embeddings', {
+		const response = await onetype.HelperRetry(() => fetch(endpoint + '/v1/embeddings', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
+			signal: AbortSignal.timeout(120000),
 			body: JSON.stringify({
 				model: model,
 				input: texts.slice(offset, offset + BATCH),
 				truncate_prompt_tokens: 2048
 			})
-		});
+		}), 3, 2000);
 
 		if(!response.ok)
 		{
