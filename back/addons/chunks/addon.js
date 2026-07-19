@@ -35,7 +35,7 @@ onetype.AddonReady('codebase', (codebase) =>
 			description: 'Last line of the file the chunk covers.'
 		});
 
-		addon.Field('text', {
+		addon.Field('content', {
 			type: 'string',
 			required: true,
 			description: 'The actual content of the chunk, exactly as it stands in the file.'
@@ -71,7 +71,7 @@ onetype.AddonReady('codebase', (codebase) =>
 		addon.Schema('position bigint not null default 0');
 		addon.Schema('line_start bigint not null default 1');
 		addon.Schema('line_end bigint not null default 1');
-		addon.Schema('text text not null');
+		addon.Schema('content text not null');
 		addon.Schema('embedding vector(1024)');
 		addon.Schema('updated_at timestamptz');
 		addon.Schema('created_at timestamptz not null default now()');

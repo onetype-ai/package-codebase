@@ -29,6 +29,11 @@ onetype.AddonReady('codebase', (codebase) =>
 			description: 'Content hash from the last scan, the key that decides whether the file changed.'
 		});
 
+		addon.Field('content', {
+			type: 'string',
+			description: 'The whole content of the file, exactly as it stands on disk at the last scan.'
+		});
+
 		addon.Field('size', {
 			type: 'number',
 			value: 0,
@@ -54,6 +59,7 @@ onetype.AddonReady('codebase', (codebase) =>
 		addon.Schema('source varchar(255) not null');
 		addon.Schema('path varchar(1024) not null');
 		addon.Schema('hash varchar(64) not null');
+		addon.Schema('content text');
 		addon.Schema('size bigint not null default 0');
 		addon.Schema('updated_at timestamptz');
 		addon.Schema('created_at timestamptz not null default now()');

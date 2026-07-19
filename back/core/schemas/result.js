@@ -21,7 +21,7 @@ onetype.DataSchema('codebase.result', {
 		type: 'number',
 		description: 'Last line of the file the chunk covers.'
 	},
-	text: {
+	content: {
 		type: 'string',
 		description: 'The actual content of the chunk.'
 	},

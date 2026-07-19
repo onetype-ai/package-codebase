@@ -25,7 +25,7 @@ codebase.Fn('chunk', function(content)
 				position: chunks.length,
 				line_start: start + 1,
 				line_end: end,
-				text: buffer.join('\n')
+				content: buffer.join('\n')
 			});
 		}
 

@@ -18,7 +18,7 @@ codebase.Fn('search', async function(query, source = null, limit = 10)
 	bindings.push(JSON.stringify(vector), limit);
 
 	const result = await knex.raw(
-		'select files.source, files.path, chunks.position, chunks.line_start, chunks.line_end, chunks.text, 1 - (chunks.embedding <=> ?::vector) as score'
+		'select files.source, files.path, chunks.position, chunks.line_start, chunks.line_end, chunks.content, 1 - (chunks.embedding <=> ?::vector) as score'
 		+ ' from codebase_chunks chunks'
 		+ ' join codebase_files files on files.id = chunks.file_id'
 		+ ' where ' + conditions.join(' and ')
@@ -33,7 +33,7 @@ codebase.Fn('search', async function(query, source = null, limit = 10)
 		position: Number(row.position),
 		line_start: Number(row.line_start),
 		line_end: Number(row.line_end),
-		text: row.text,
+		content: row.content,
 		score: Math.round(row.score * 1000) / 1000
 	}));
 });
