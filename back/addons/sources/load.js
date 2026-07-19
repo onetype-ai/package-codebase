@@ -16,6 +16,7 @@ import '#codebase/addons/sources/items/self/claude-cli.js';
 import '#codebase/addons/sources/items/self/cms.js';
 import '#codebase/addons/sources/items/self/codebase.js';
 import '#codebase/addons/sources/items/self/connect.js';
+import '#codebase/addons/sources/items/self/cookbook.js';
 import '#codebase/addons/sources/items/self/developer.js';
 import '#codebase/addons/sources/items/self/forge.js';
 import '#codebase/addons/sources/items/self/framework.js';

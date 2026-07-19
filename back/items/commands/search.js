@@ -18,6 +18,10 @@ commands.Item({
 			type: 'string',
 			description: 'Slug of a single source to search in. Omitted searches everything.'
 		},
+		path: {
+			type: 'string',
+			description: 'Path pattern the file must match, like front/ or %.css. Plain text matches anywhere in the path.'
+		},
 		limit: {
 			type: 'number',
 			value: 10,
@@ -40,7 +44,7 @@ commands.Item({
 		}
 
 		const limit = Math.min(Math.max(properties.limit, 1), 50);
-		const results = await codebase.Fn('search', properties.query, properties.source, limit);
+		const results = await codebase.Fn('search', properties.query, properties.source, properties.path, limit);
 
 		resolve({ results }, 'Found ' + results.length + (results.length === 1 ? ' place.' : ' places.'));
 	}

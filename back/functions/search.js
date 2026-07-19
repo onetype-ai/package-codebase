@@ -1,13 +1,13 @@
 import database from '@onetype/framework/database';
 import codebase from '#codebase/addon.js';
 
-codebase.Fn('search', async function(query, source = null, limit = 10)
+codebase.Fn('search', async function(query, source = null, path = null, limit = 10)
 {
 	const [vector] = await this.Fn('embed', [query]);
 	const knex = database.Fn('connection');
 
 	const conditions = ['chunks.deleted_at is null', 'files.deleted_at is null'];
-	const bindings = [JSON.stringify(vector)];
+	const bindings = [JSON.stringify(vector), '%' + query + '%', '%' + query + '%'];
 
 	if(source)
 	{
@@ -15,14 +15,23 @@ codebase.Fn('search', async function(query, source = null, limit = 10)
 		bindings.push(source);
 	}
 
-	bindings.push(JSON.stringify(vector), limit);
+	if(path)
+	{
+		conditions.push('files.path ilike ?');
+		bindings.push(path.includes('%') ? path : '%' + path + '%');
+	}
+
+	bindings.push(limit);
 
 	const result = await knex.raw(
-		'select files.source, files.path, chunks.position, chunks.line_start, chunks.line_end, chunks.content, chunks.context, 1 - (chunks.embedding <=> ?::vector) as score'
+		'select files.source, files.path, chunks.position, chunks.line_start, chunks.line_end, chunks.content, chunks.context,'
+		+ ' 1 - (chunks.embedding <=> ?::vector)'
+		+ ' + (case when chunks.content ilike ? then 0.15 else 0 end)'
+		+ ' + (case when files.path ilike ? then 0.1 else 0 end) as score'
 		+ ' from codebase_chunks chunks'
 		+ ' join codebase_files files on files.id = chunks.file_id'
 		+ ' where ' + conditions.join(' and ')
-		+ ' order by chunks.embedding <=> ?::vector'
+		+ ' order by score desc'
 		+ ' limit ?',
 		bindings
 	);
