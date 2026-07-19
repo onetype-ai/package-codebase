@@ -8,13 +8,6 @@ commands.Item({
 	endpoint: '/api/codebase/search',
 	description: 'Semantic search over the whole codebase. Embeds the query and answers with the closest chunks, each carrying its source, path, lines and content.',
 	metadata: { addon: 'codebase' },
-	condition: function()
-	{
-		if(this.http && !this.http.state.user)
-		{
-			return 'Sign in to search the codebase.';
-		}
-	},
 	in: {
 		query: {
 			type: 'string',
