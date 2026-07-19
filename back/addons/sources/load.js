@@ -1,5 +1,8 @@
 import '#codebase/addons/sources/addon.js';
 
+/* Core */
+import '#codebase/addons/sources/core/schemas/source.js';
+
 /* Functions */
 import '#codebase/addons/sources/functions/root.js';
 import '#codebase/addons/sources/functions/walk.js';
@@ -20,3 +23,4 @@ import '#codebase/addons/sources/items/self/orah.js';
 import '#codebase/addons/sources/items/self/platform.js';
 import '#codebase/addons/sources/items/self/vault.js';
 import '#codebase/addons/sources/items/self/work.js';
+import '#codebase/addons/sources/items/commands/many.js';
