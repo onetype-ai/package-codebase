@@ -21,6 +21,7 @@ import '#codebase/functions/search.js';
 import '#codebase/items/commands/scan.js';
 import '#codebase/items/commands/search.js';
 import '#codebase/items/commands/file.js';
+import '#codebase/items/commands/tree.js';
 
 /* Listeners */
 import '#codebase/listeners/boot.js';

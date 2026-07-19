@@ -8,13 +8,6 @@ commands.Item({
 	endpoint: '/api/codebase/sources',
 	description: 'Lists every registered source with what it covers and whether it resolves on this instance.',
 	metadata: { addon: 'codebase.sources' },
-	condition: function()
-	{
-		if(this.http && !this.http.state.user)
-		{
-			return 'Sign in to list the sources.';
-		}
-	},
 	out: {
 		sources: {
 			type: 'array',

@@ -28,7 +28,7 @@ onetype.AddonReady('codebase', (codebase) =>
 
 		addon.Field('extensions', {
 			type: 'array',
-			value: ['.js', '.css'],
+			value: ['.js', '.css', '.json'],
 			each: {
 				type: 'string',
 				description: 'Single file extension including the dot.'
