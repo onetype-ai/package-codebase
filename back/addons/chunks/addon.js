@@ -41,6 +41,11 @@ onetype.AddonReady('codebase', (codebase) =>
 			description: 'The actual content of the chunk, exactly as it stands in the file.'
 		});
 
+		addon.Field('context', {
+			type: 'string',
+			description: 'Where the chunk sits inside the document, like a heading trail in markdown. Empty for plain code.'
+		});
+
 		addon.Field('embedding', {
 			type: 'array',
 			value: [],
@@ -72,6 +77,7 @@ onetype.AddonReady('codebase', (codebase) =>
 		addon.Schema('line_start bigint not null default 1');
 		addon.Schema('line_end bigint not null default 1');
 		addon.Schema('content text not null');
+		addon.Schema('context varchar(1024)');
 		addon.Schema('embedding vector(1024)');
 		addon.Schema('updated_at timestamptz');
 		addon.Schema('created_at timestamptz not null default now()');

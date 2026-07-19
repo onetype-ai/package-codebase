@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs';
-import { join } from 'path';
+import { join, extname } from 'path';
 import codebase from '#codebase/addon.js';
 
 codebase.files.Fn('sync', async function(source)
@@ -59,8 +59,14 @@ codebase.files.Fn('sync', async function(source)
 		}
 
 		const content = readFileSync(join(root, file.path), 'utf8');
-		const chunks = codebase.Fn('chunk', content);
-		const vectors = await codebase.Fn('embed', chunks.map((chunk) => chunk.content));
+		const chunks = codebase.Fn('chunk', content, extname(file.path));
+
+		const inputs = chunks.map((chunk) =>
+		{
+			return source + ' ' + file.path + (chunk.context ? ' — ' + chunk.context : '') + '\n\n' + chunk.content;
+		});
+
+		const vectors = await codebase.Fn('embed', inputs);
 
 		let item = row;
 
@@ -107,6 +113,7 @@ codebase.files.Fn('sync', async function(source)
 				line_start: chunks[index].line_start,
 				line_end: chunks[index].line_end,
 				content: chunks[index].content,
+				context: chunks[index].context,
 				embedding: vectors[index]
 			});
 

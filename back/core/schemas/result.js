@@ -25,6 +25,10 @@ onetype.DataSchema('codebase.result', {
 		type: 'string',
 		description: 'The actual content of the chunk.'
 	},
+	context: {
+		type: 'string',
+		description: 'Where the chunk sits inside the document, like a heading trail in markdown. Empty for plain code.'
+	},
 	score: {
 		type: 'number',
 		description: 'Cosine similarity between the query and the chunk, one is a perfect match.'

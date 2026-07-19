@@ -14,6 +14,8 @@ import '#codebase/core/pipelines/scan.js';
 
 /* Functions */
 import '#codebase/functions/chunk.js';
+import '#codebase/functions/chunk/code.js';
+import '#codebase/functions/chunk/markdown.js';
 import '#codebase/functions/embed.js';
 import '#codebase/functions/search.js';
 
