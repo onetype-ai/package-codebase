@@ -1,0 +1,19 @@
+{
+    "name": "@onetype/codebase",
+    "version": "0.1.0",
+    "description": "Continuous code intelligence for the instance. Scans the packages, embeds every chunk and answers semantic search over the whole codebase.",
+    "type": "module",
+    "license": "MIT",
+    "author": "Dejan Tomic <hi@iamdejan.com>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/onetype-ai/package-codebase.git"
+    },
+    "imports": {
+        "#codebase/*": "./back/*"
+    },
+    "peerDependencies": {
+        "@onetype/framework": ">=2.0.0",
+        "@onetype/platform": ">=0.1.0"
+    }
+}
