@@ -1,6 +1,7 @@
 import codebase from '#codebase/addon.js';
 
-onetype.Pipeline('codebase:scan', {
+codebase.PipelineAdd({
+	id: 'scan',
 	description: 'Walks the sources, notices what changed by content hash and refreshes the embeddings.',
 	timeout: 600000,
 	in: {
@@ -12,7 +13,7 @@ onetype.Pipeline('codebase:scan', {
 	out: 'codebase.scan'
 })
 
-.Join('collect', 10, {
+.Join('collect', {
 	description: 'Resolve which sources the scan goes through.',
 	out: {
 		targets: {
@@ -50,7 +51,7 @@ onetype.Pipeline('codebase:scan', {
 	}
 })
 
-.Join('sync', 20, {
+.Join('sync', {
 	description: 'Sync every target source into the index.',
 	requires: ['targets'],
 	out: {

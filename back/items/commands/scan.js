@@ -1,4 +1,5 @@
 import commands from '@onetype/framework/commands';
+import codebase from '#codebase/addon.js';
 
 commands.Item({
 	id: 'codebase:scan',
@@ -23,7 +24,7 @@ commands.Item({
 	out: 'codebase.scan',
 	callback: async function(properties, resolve)
 	{
-		const result = await onetype.PipelineRun('codebase:scan', properties);
+		const result = await codebase.Pipeline('scan', properties);
 
 		if(result.code !== 200)
 		{
