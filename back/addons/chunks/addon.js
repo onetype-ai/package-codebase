@@ -1,5 +1,3 @@
-import onetype from '@onetype/framework';
-
 onetype.AddonReady('codebase', (codebase) =>
 {
 	codebase.chunks = onetype.Addon('codebase.chunks', (addon) =>

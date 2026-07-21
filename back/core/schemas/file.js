@@ -1,6 +1,4 @@
-import onetype from '@onetype/framework';
-
-onetype.DataSchema('codebase.file', {
+onetype.SchemasRegister('codebase.file', {
 	source: {
 		type: 'string',
 		description: 'Slug of the source the file belongs to.'

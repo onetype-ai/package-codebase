@@ -1,6 +1,4 @@
-import onetype from '@onetype/framework';
-
-onetype.DataSchema('codebase.result', {
+onetype.SchemasRegister('codebase.result', {
 	source: {
 		type: 'string',
 		description: 'Slug of the source the hit comes from.'

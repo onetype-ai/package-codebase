@@ -1,5 +1,3 @@
-import onetype from '@onetype/framework';
-
 onetype.AddonReady('codebase', (codebase) =>
 {
 	codebase.files = onetype.Addon('codebase.files', (addon) =>

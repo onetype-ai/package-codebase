@@ -1,4 +1,3 @@
-import onetype from '@onetype/framework';
 import codebase from '#codebase/addon.js';
 
 onetype.Pipeline('codebase:scan', {

@@ -1,6 +1,4 @@
-import onetype from '@onetype/framework';
-
-onetype.DataSchema('codebase.source', {
+onetype.SchemasRegister('codebase.source', {
 	id: {
 		type: 'string',
 		description: 'Source slug everything references, like framework or work.'

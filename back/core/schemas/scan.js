@@ -1,6 +1,4 @@
-import onetype from '@onetype/framework';
-
-onetype.DataSchema('codebase.scan', {
+onetype.SchemasRegister('codebase.scan', {
 	sources: {
 		type: 'number',
 		value: 0,
