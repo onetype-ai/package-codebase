@@ -6,11 +6,11 @@ import '#codebase/addons/files/load.js';
 import '#codebase/addons/chunks/load.js';
 
 /* Core */
-import '#codebase/core/schemas/scan.js';
-import '#codebase/core/schemas/result.js';
-import '#codebase/core/schemas/file.js';
-import '#codebase/core/emitters/scan.js';
-import '#codebase/core/pipelines/scan.js';
+import '#codebase/_/schemas/scan.js';
+import '#codebase/_/schemas/result.js';
+import '#codebase/_/schemas/file.js';
+import '#codebase/_/emitters/scan.js';
+import '#codebase/_/pipelines/scan.js';
 
 /* Functions */
 import '#codebase/functions/chunk.js';
