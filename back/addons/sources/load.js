@@ -1,7 +1,7 @@
 import '#codebase/addons/sources/addon.js';
+import '#codebase/addons/sources/items/onetype-schemas/codebase.source.js';
 
 /* Core */
-import '#codebase/addons/sources/_/schemas/source.js';
 
 /* Functions */
 import '#codebase/addons/sources/functions/root.js';
